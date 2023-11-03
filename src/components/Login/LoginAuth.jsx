@@ -61,13 +61,12 @@ const LoginAuth = ({ run, setIdx, navigation, setData, setRun }) => {
               setUser(user?.user);
               alert("인증완료되었습니다.");
               setTimeout(() => {
-                navigation.navigate("StorelistScreen");
+                navigate("StorelistScreen");
               }, 2000);
             } else {
               setIdx(2);
               setData(phone);
               setRun(null);
-              navigation.navigate();
             }
           });
         } else {
