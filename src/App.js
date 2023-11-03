@@ -18,6 +18,7 @@ import AddRoomPage from "./pages/AddRoomPage";
 import EditRoomPage from "./pages/EditRoomPage";
 import EditStorePricePage from "./pages/EditStorePricePage";
 import EditImgPage from "./pages/EditImgPage";
+import EditUserPage from "./pages/EditUserPage";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/editroom" element={<EditRoomPage />} />
         <Route path="/editprice" element={<EditStorePricePage />} />
         <Route path="/editimg" element={<EditImgPage />} />
+        <Route path="/edituser" element={<EditUserPage />} />
       </Routes>
     </Container>
   );

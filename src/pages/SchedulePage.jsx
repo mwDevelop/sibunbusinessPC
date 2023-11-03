@@ -153,12 +153,13 @@ const SchedulePage = () => {
             const nowTimeValue = Number(nowTime) === Number(openTime + index);
             return (
               <Time
-                border={nowTimeValue ? 2 : 0}
+                // border={nowTimeValue ? 2 : 0}
                 color={nowTimeValue ? "#f33562" : checkColor}
                 key={index}
                 onClick={() => onClickTime(openTime + index, index)}
                 id={index}
               >
+                <Line border={nowTimeValue ? 2 : 0} />
                 {openTime + index}시
               </Time>
             );
@@ -255,6 +256,14 @@ const BtnWrap = styled.div`
   display: grid;
   grid-template-columns: 45% 45%;
   justify-content: space-evenly;
+`;
+
+const Line = styled.div`
+  position: absolute;
+  border: ${(props) => props.border}px solid #f33562;
+  width: 40px;
+  top: -2px;
+  z-index: 200;
 `;
 
 export default SchedulePage;

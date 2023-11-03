@@ -50,6 +50,8 @@ const apis = {
     instance.put(`/store/${storeId}/pricing`, data),
   deleteStore: (storeId) => instance.delete(`/store/${storeId}`),
   postStore: (storeId, data) => instance.post(`/store/${storeId}`, data),
+  deleteStoreImg: (storeId, idx) =>
+    instance.delete(`/store/${storeId}/image/${idx}`),
   postBulkImg: (storeId, data) =>
     instance.post(`/store/${storeId}/bulk/image`, data),
 

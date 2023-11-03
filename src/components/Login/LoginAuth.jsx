@@ -30,6 +30,7 @@ const LoginAuth = ({ run, setIdx, navigation, setData, setRun }) => {
       alert("핸드폰 번호를 입력해주세요.");
     } else {
       apis.postSendsms(data).then((res) => {
+        console.log(res);
         if (res.data.result === "000") {
           alert("인증번호가 발송되었습니다.");
         }
@@ -38,66 +39,55 @@ const LoginAuth = ({ run, setIdx, navigation, setData, setRun }) => {
   };
 
   const onPressCheck = () => {
-    // if (auth !== null) {
-    //   const data = {
-    //     receiver_cellphone: phone,
-    //     auth_code: auth,
-    //   };
+    if (auth !== null) {
+      const data = {
+        receiver_cellphone: phone,
+        auth_code: Number(auth),
+      };
 
-    //   apis.postAuthCheck(data).then((res) => {
-    //     console.log(res);
-    //     console.log(res.data);
-    //     // if (res.data.result === "000") {
-    //     //   apis.postLogin({ pt_cellphone: phone }).then((res) => {
-    //     //     console.log(res.data);
-    //     //     if (res.data.result === "000") {
-    //     //       const user = res.data;
-    //     //       localStorage.setItem(
-    //     //         "userInfo",
-    //     //         JSON.stringify({ ...user.user, refresh: user.refresh_token })
-    //     //       );
-    //     //       localStorage.setItem("accessToken", user.access_token);
-    //     //       localStorage.setItem("refreshToken", user.refresh_token);
-    //     //       setLogin(true);
-    //     //       setUser(user?.user);
-    //     //       alert("인증완료되었습니다.");
-    //     //       setTimeout(() => {
-    //     //         navigation.navigate("StorelistScreen");
-    //     //       }, 2000);
-    //     //     } else {
-    //     //       setIdx(2);
-    //     //       setData(phone);
-    //     //       setRun(null);
-    //     //       navigation.navigate();
-    //     //     }
-    //     //   });
-    //     // } else {
-    //     //   alert("인증번호가 잘못되었습니다.");
-    //     //   setRun(null);
-    //     // }
-    //   });
-    // }
-    const data = {
-      pt_cellphone: phone,
-    };
+      apis.postAuthCheck(data).then((res) => {
+        if (res.data.result === "000") {
+          apis.postLogin({ pt_cellphone: phone }).then((res) => {
+            console.log(res.data);
+            if (res.data.result === "000") {
+              const user = res.data;
+              localStorage.setItem(
+                "userInfo",
+                JSON.stringify({ ...user.user, refresh: user.refresh_token })
+              );
+              localStorage.setItem("accessToken", user.access_token);
+              localStorage.setItem("refreshToken", user.refresh_token);
+              setLogin(true);
+              setUser(user?.user);
+              alert("인증완료되었습니다.");
+              setTimeout(() => {
+                navigation.navigate("StorelistScreen");
+              }, 2000);
+            } else {
+              setIdx(2);
+              setData(phone);
+              setRun(null);
+              navigation.navigate();
+            }
+          });
+        } else {
+          alert("인증번호가 잘못되었습니다.");
+          setRun(null);
+        }
+      });
+    }
+    // const data = {
+    //   pt_cellphone: phone,
+    // };
 
-    apis.postLogin(data).then((res) => {
-      console.log(res);
-      // setCookie("refreshToken", res?.data?.refresh_token, {
-      //   path: "/",
-      //   secure: "/",
-      // });
+    // apis.postLogin(data).then((res) => {
+    //   console.log(res);
 
-      // setCookie("accessToken", res?.data?.access_token, {
-      //   path: "/",
-      //   secure: "/",
-      // });
+    //   localStorage.setItem("refreshToken", res?.data?.refresh_token);
+    //   localStorage.setItem("accessToken", res?.data?.access_token);
 
-      localStorage.setItem("refreshToken", res?.data?.refresh_token);
-      localStorage.setItem("accessToken", res?.data?.access_token);
-
-      navigate("/storelist");
-    });
+    //   navigate("/storelist");
+    // });
   };
 
   return (

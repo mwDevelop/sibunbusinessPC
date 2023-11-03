@@ -178,6 +178,7 @@ const AddStorePage = () => {
     if (eidtvalue) {
       storeInfo.store_main_simg = result[0].store_img_data;
       const detailImg = result.slice(1);
+      console.log(detailImg);
       editDetailImg(detailImg);
       await apis.postStore(storeId, storeInfo).then((res) => {
         console.log("기본정보", res);
@@ -320,7 +321,9 @@ const AddStorePage = () => {
                     />
                   </>
 
-                  {img && <ImgPicker img={img} setImg={setImg} />}
+                  {img && (
+                    <ImgPicker img={img} setImg={setImg} storeId={storeId} />
+                  )}
                 </div>
               </div>
               <div className="wrap">

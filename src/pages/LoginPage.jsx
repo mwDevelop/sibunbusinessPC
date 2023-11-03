@@ -48,17 +48,15 @@ const LoginScreen = ({ navigation }) => {
             setRun={setRun}
           />
         ) : (
-          // <Signup
-          //   idx={idx}
-          //   getData={getData}
-          //   setRun={setRun}
-          //   signUp={signUp}
-          //   phone={phone}
-          //   run={run}
-          //   navigation={navigation}
-          // />
-
-          ""
+          <Signup
+            idx={idx}
+            getData={getData}
+            setRun={setRun}
+            signUp={signUp}
+            phone={phone}
+            run={run}
+            navigation={navigation}
+          />
         )}
 
         <NextBtn

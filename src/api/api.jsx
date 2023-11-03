@@ -33,14 +33,6 @@ instance.interceptors.response.use(
         .then(async (res) => {
           const result = res?.data;
           if (result?.result === "000") {
-            // setCookie("refreshToken", result.refresh_token, {
-            //   path: "/",
-            //   secure: "/",
-            // });
-            // setCookie("accessToken", result.access_token, {
-            //   path: "/",
-            //   secure: "/",
-            // });
             localStorage.setItem("refreshToken", res?.data?.refresh_token);
             localStorage.setItem("accessToken", res?.data?.access_token);
             originalRequest.headers[

@@ -2,8 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { Img, Title } from "../../styles/styledComponent";
+import IconClose from "../../assets/image/close_img.png";
+import apis from "../../api/apis";
 
-const ImgPicker = ({ img, setImg }) => {
+const ImgPicker = ({ img, setImg, storeId }) => {
   function handleOnDragEnd(result) {
     if (result.destination !== null) {
       const currentItem = [...img];
@@ -14,6 +16,24 @@ const ImgPicker = ({ img, setImg }) => {
       setImg(currentItem);
     }
   }
+
+  const onClickDelete = (e) => {
+    console.log(e);
+    if (!e.store_img_idx) {
+      const filterData = img.filter((el) => el.id !== e.id);
+      setImg(filterData);
+    } else {
+      apis.deleteStoreImg(storeId, e.store_img_idx).then((res) => {
+        if (res.data.result === "000") {
+          console.log("삭제되었습니다.");
+          const filterData = img.filter(
+            (el) => el.store_img_idx !== e.store_img_idx
+          );
+          setImg(filterData);
+        }
+      });
+    }
+  };
 
   return (
     <Picker>
@@ -40,6 +60,13 @@ const ImgPicker = ({ img, setImg }) => {
                           ref={provided.innerRef}
                           className="item"
                         >
+                          <button
+                            className="deletedbtn"
+                            onClick={() => onClickDelete(e)}
+                          >
+                            <Img src={IconClose} width={17} />
+                          </button>
+
                           <Img
                             src={e.url || e.store_img_data}
                             width={100}
@@ -86,6 +113,12 @@ const DragContent = styled.div`
   margin-left: 10px;
   & .item {
     position: relative;
+  }
+
+  & .deletedbtn {
+    position: absolute;
+    top: 6px;
+    right: 20px;
   }
 
   & .main {

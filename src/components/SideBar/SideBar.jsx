@@ -98,7 +98,7 @@ const SideBar = ({ setOpenNav }) => {
 
           {user && (
             <div className="top">
-              <button className="flex">
+              <button className="flex" onClick={() => navigate("/edituser")}>
                 <Img width={22} src={IconSetting} />
                 정보수정
               </button>

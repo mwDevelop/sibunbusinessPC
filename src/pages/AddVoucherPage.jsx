@@ -28,10 +28,10 @@ const AddVoucherPage = () => {
     !!state ? state?.store_voucher_end_date : dayjs().format("YYYY-MM-DD")
   );
   const [startTime, setStartTime] = useState(
-    !!state ? `${Time(state?.store_voucher_beg_time)}` : "시간선택"
+    !!state ? `${Time(state?.store_voucher_beg_time)}` : dayjs().format("HH:mm")
   );
   const [endTime, setEndTime] = useState(
-    !!state ? `${Time(state?.store_voucher_end_time)}` : "시간선택"
+    !!state ? `${Time(state?.store_voucher_end_time)}` : dayjs().format("HH:mm")
   );
   const [voucherName, setVoucherName] = useState(
     !!state ? state?.store_voucher_title : ""
@@ -58,7 +58,7 @@ const AddVoucherPage = () => {
   function putVoucher(storeId, data) {
     apis.putVoucher(storeId, data).then((res) => {
       console.log(res);
-      if (res.data.result === "000") {
+      if (res?.data?.result === "000") {
         navigate("/voucher");
       } else {
         alert("입력한 정보를 확인해주세요!");
@@ -124,7 +124,7 @@ const AddVoucherPage = () => {
 
           <Input
             placeholder="예) 30"
-            width={20}
+            width={30}
             onChange={(e) => setVoucherRate(e.target.value)}
             value={voucherRate || ""}
           />
@@ -183,7 +183,7 @@ const AddVoucherPage = () => {
 };
 
 const AddWrap = styled.div`
-  padding: 0px 20px 90px 20px;
+  padding: 70px 20px 90px 20px;
   box-sizing: border-box;
   & .inputWrap {
     position: relative;
@@ -209,7 +209,12 @@ const AddWrap = styled.div`
     display: flex;
     align-items: center;
     & .css-4jnixx-MuiStack-root > .MuiTextField-root {
-      min-width: 100px;
+      min-width: 90px;
+    }
+    &
+      .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-error
+      .MuiOutlinedInput-notchedOutline {
+      border-color: rgba(0, 0, 0, 0.23);
     }
     &:last-child {
       margin-top: 10px;
