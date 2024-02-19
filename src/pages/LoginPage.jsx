@@ -5,8 +5,10 @@ import styled from "styled-components";
 import IconArrow from "../assets/image/arrow_r_b.png";
 import LoginAuth from "../components/Login/LoginAuth";
 import Signup from "../components/Login/Signup";
+import { useNavigate } from "react-router-dom";
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
+  const navigation = useNavigate();
   const [idx, setIdx] = useState(1);
   const [run, setRun] = useState(null);
   const [signUp, setSignUp] = useState(false);

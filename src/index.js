@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { CookiesProvider } from "react-cookie";
 import { RecoilRoot } from "recoil";
 import ScrollToTop from "./utils/ScrollToTop";
+import GlobalStyles from "./GlobalStyles";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +15,7 @@ root.render(
     <CookiesProvider>
       <BrowserRouter>
         <ScrollToTop />
+        <GlobalStyles />
         <App />
       </BrowserRouter>
     </CookiesProvider>

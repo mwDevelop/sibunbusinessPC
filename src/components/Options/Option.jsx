@@ -15,7 +15,6 @@ const Option = ({
   setSelectedOption,
 }) => {
   const valueCheck = value === "edit";
-
   const [add, setAdd] = useState(null);
 
   useEffect(() => {
@@ -32,8 +31,6 @@ const Option = ({
       if (selectedOption?.includes(e)) {
         const filter = selectedOption.filter((el) => el !== e);
         arr.push(...filter);
-
-        console.log(filter);
       } else {
         arr.push(...selectedOption, e);
       }

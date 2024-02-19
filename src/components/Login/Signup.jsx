@@ -69,7 +69,7 @@ const Signup = ({ idx, getData, run, signUp, phone, setRun, navigation }) => {
             setLogin(true);
             setUser(user?.user);
             setTimeout(() => {
-              navigation.navigate("StorelistScreen");
+              navigation("StorelistScreen");
             }, 2000);
           }
         });

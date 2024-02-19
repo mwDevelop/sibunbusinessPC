@@ -41,7 +41,7 @@ const Flex = styled.div`
 `;
 
 const Logo = styled(Flex)`
-  height: 50vh;
+  height: 60vh;
 `;
 
 const Bottom = styled.div`

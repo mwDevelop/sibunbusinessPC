@@ -487,6 +487,4 @@ const AddStore = styled.div`
   }
 `;
 
-const Adress = styled.div``;
-
 export default AddStorePage;

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Title, LoginInput, Container } from "../../styles/styledComponent";
+import { Title, LoginInput } from "../../styles/styledComponent";
 import styled from "styled-components";
 import apis from "../../api/apis";
 
 import { useRecoilState } from "recoil";
 import { userState, loginState } from "../../recoil/atom";
-import axios from "axios";
-import { setCookie } from "../../cookie/cookie";
 
-const LoginAuth = ({ run, setIdx, navigation, setData, setRun }) => {
+const LoginAuth = ({ run, setIdx, setData, setRun }) => {
   const navigate = useNavigate();
   const [phone, setPhone] = useState("");
   const [auth, setAuth] = useState("");
